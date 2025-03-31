@@ -2,17 +2,21 @@
 
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use App\Http\Controllers\OfferController;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
 
+Route::get('/offers', [OfferController::class, 'index'])->name('dashboard');
 
-Route::get('/crear', function () { return ('hola'); })->name('crear');
+Route::get('/offers/create', [OfferController::class, 'create'])->name('create');
+
+Route::post('/offers', [OfferController::class, 'store'])->name('store')->middleware('auth');
+
+Route::get('/offers/{offer}', [OfferController::class, 'show'])->name('show');
+
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');

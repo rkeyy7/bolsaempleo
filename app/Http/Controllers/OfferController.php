@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Offer;
+use Illuminate\Support\Facades\Auth;
 
 class OfferController extends Controller
 {
@@ -12,9 +13,9 @@ class OfferController extends Controller
      */
     public function index()
     {
-        $offers = Offer::with('user')->latest()->paginate(10);
+        $offers = Offer::with('user')->latest()->paginate(5);
         
-        return view('offers.index',['offers' => $offers]);
+        return view('dashboard',['offers' => $offers]);
     }
 
     /**
@@ -31,20 +32,20 @@ class OfferController extends Controller
     public function store(Request $request)
     {
         {
-            request()->validate([
+            $request->validate([
                 'title' => ['required', 'min:3'],
                 'salary' => ['required']
             ]);
-    
+        
             $offer = Offer::create([
-                'enterprise_name' => request('enterprise_name'),
-                'title' => request('title'),
-                'description' => request('description'),
-                'salary' => request('salary'),
-                'location' => request('location'),
-                // 'user_id' => 1
+                'enterprise_name' => $request->input('enterprise_name'),
+                'title' => $request->input('title'),
+                'description' => $request->input('description'),
+                'salary' => $request->input('salary'),
+                'location' => $request->input('location'),
+                'user_id' => 1
             ]);
-    
+        
             return redirect('/offers')
                 ->with('status', 'Offer created successfully!');
         }
