@@ -9,4 +9,18 @@ class Application extends Model
 {
     /** @use HasFactory<\Database\Factories\ApplicationFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'status',
+    ];
+
+    public function offer()
+    {
+        return $this->belongsTo(Offer::class);
+    }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

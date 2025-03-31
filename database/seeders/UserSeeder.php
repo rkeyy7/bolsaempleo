@@ -3,10 +3,13 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Offer;
+use App\Models\Application;
 
 
 class UserSeeder extends Seeder
@@ -17,27 +20,43 @@ class UserSeeder extends Seeder
     public function run(): void
     {
 
-        $permissionAdmin = Permission::create(['name' =>'crear usuario']);
-        $permissionAdmin = Permission::create(['name' =>'editar usuario']);
-        $permissionAdmin = Permission::create(['name' =>'actualizar usuario']);
-        $permissionAdmin = Permission::create(['name' =>'borrar usuario']);
+        // Crear roles
+        $adminRole = Role::create(['name' => 'admin']);
+        $userRole = Role::create(['name' => 'user']);
 
+        // Crear permisos
+        Permission::create(['name' => 'manage offers']);
+        Permission::create(['name' => 'apply for jobs']);
 
-        $permissionAdmin = Permission::create(['name' =>'crear OfertaLaboral']);
-        $permissionAdmin = Permission::create(['name' =>'editar OfertaLaboral']);
-        $permissionAdmin = Permission::create(['name' =>'actualizar OfertaLaboral']);
-        $permissionAdmin = Permission::create(['name' =>'borrar OfertaLaboral']);
+        // Asignar permisos a roles
+        $adminRole->givePermissionTo('manage offers');
+        $userRole->givePermissionTo('apply for jobs');
 
-       $adminUser = User::factory()->create([
-            'name' => 'Carlos De la rosa',
-            'email' => 'carlitos@gmail.com',
-            'password' => bcrypt('12345678')
+        // Crear usuarios de prueba manualmente
+        $admin = User::create([
+            'name' => 'Admin User',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('password'),
         ]);
+        $admin->assignRole('admin');
 
-        $roleAdmin = Role::create(['name' => 'administrator']);
-        $adminUser -> assignrole($roleAdmin);
-        $roleAdmin->syncPermissions($permissionAdmin);
+        $user = User::create([
+            'name' => 'Test User',
+            'email' => 'user@example.com',
+            'password' => Hash::make('password'),
+        ]);
+        $user->assignRole('user');
 
+        // Crear usuarios con la fábrica y asignarles el rol de usuario
+        User::factory(5)->create()->each(function ($user) use ($userRole) {
+            $user->assignRole('user');
+        });
+
+        // Crear ofertas de empleo con la fábrica
+        Offer::factory(5)->create(['user_id' => $admin->id]);
+
+        // Crear aplicaciones con la fábrica
+        Application::factory(10)->create();
 
     }
 }
