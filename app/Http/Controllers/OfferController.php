@@ -33,7 +33,7 @@ class OfferController extends Controller
     {
         {
             $request->validate([
-                'title' => ['required', 'min:3'],
+                'title' => ['required'],
                 'salary' => ['required']
             ]);
         
@@ -43,7 +43,7 @@ class OfferController extends Controller
                 'description' => $request->input('description'),
                 'salary' => $request->input('salary'),
                 'location' => $request->input('location'),
-                'user_id' => 1
+                'user_id' => Auth::id(),
             ]);
         
             return redirect('/offers')
