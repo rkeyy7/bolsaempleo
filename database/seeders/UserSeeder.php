@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Offer;
 use App\Models\Application;
+use App\Models\File; // Ensure the File model exists in this namespace
 
 
 class UserSeeder extends Seeder
@@ -45,6 +46,13 @@ class UserSeeder extends Seeder
             'email' => 'user@example.com',
             'password' => Hash::make('password'),
         ]);
+
+        File::create([
+            'user_id' => $user->id,
+            'file_path' => 'resumes/test.pdf', 
+            'file_type' => 'application/pdf',
+        ]);
+
         $user->assignRole('user');
 
         // Crear usuarios con la fábrica y asignarles el rol de usuario
