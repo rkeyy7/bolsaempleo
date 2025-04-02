@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Offer;
 use App\Models\Application;
-use App\Models\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Routing\Controller;
 
 class ApplicationController extends Controller
@@ -19,6 +17,28 @@ class ApplicationController extends Controller
     // }
 
     // Método para postularse a un trabajo
+    public function index()
+    {
+        // Obtener todas las postulaciones del usuario autenticado
+        $user = Auth::user();
+        $applications = Application::where('user_id', $user->id)->paginate(3);
+        
+        return view('applications.index', compact('applications'));
+    }
+    public function showmyoffers($id)
+    {
+        $user = Auth::user();
+        $offers = Offer::where('user_id', $user->id)->get()->paginate(3);
+        return view('applications.myoffers', compact('offersapplications'));
+    }
+
+    public function offersApplications($id)
+    {
+        $applications = Application::where('offer_id', $id)->get()->paginate(3);
+        return view('applications.job_applications', compact('applications'));
+    }
+
+
     public function apply(Request $request, $id)
     {
         // Obtener el trabajo al que se postula
@@ -45,14 +65,7 @@ class ApplicationController extends Controller
     }
 
     // Mostrar todas las postulaciones de un trabajo
-    public function showApplications($Id)
-    {
-        // Obtener las postulaciones para el trabajo específico
-        $offer = Offer::findOrFail($Id);
-        $applications = $offer->applications;
-
-        return view('offers.applications', compact('offer', 'applications'));
-    }
+    
 
 }
 

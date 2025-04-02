@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\EmployerController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\FileController;
 
@@ -25,14 +26,16 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/files/upload', [FileController::class, 'uploadfile'])->name('files.upload');
 
-    // Ruta para postularse a un trabajo
     Route::post('/applications/apply/{offer}', [ApplicationController::class, 'apply'])->name('applications.apply');
 
-    // Ruta para ver las postulaciones de un trabajo
-    Route::get('/offers/{offer}/applications', [ApplicationController::class, 'showApplications'])->name('applications.index');
+    Route::get('/applications', [ApplicationController::class, 'index'])->name('applications.index');
+    
+    Route::get('/applications/myoffers', [ApplicationController::class, 'showmyoffers'])->name('applications.myoffers');
 
-    // Ruta para descargar el archivo de una postulación
-    Route::get('/applications/{application}/download', [ApplicationController::class, 'downloadFile'])->name('applications.download');
+    Route::get('/applications/{id}', [ApplicationController::class, 'showApplications'])->name('applications.show');
+
+    Route::get('/files/download/{id}', [FileController::class, 'downloadFile'])->name('files.download');
+    
     });
     
 Route::middleware(['auth'])->group(function () {

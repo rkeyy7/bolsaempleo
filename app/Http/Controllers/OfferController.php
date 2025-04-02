@@ -56,6 +56,7 @@ class OfferController extends Controller
     {
         return view('offers.show', ['offer' => $offer]);
     }
+    
 
     public function edit(Offer $offer)
     {

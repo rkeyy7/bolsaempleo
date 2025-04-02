@@ -8,17 +8,23 @@
                 'current' => request()->routeIs('offers.index'),
             ],
             [
-                'name' => 'crear oferta',
+                'name' => 'Crear oferta',
                 'icon' => 'folder-open',
                 'url' => route('offers.create'),
                 'current' => request()->routeIs('create'),
             ],
-            // [
-            //     'name' => 'Categorias',
-            //     'icon' => 'folder-open',
-            //     'url' => route('admin.categories.index'),
-            //     'current' => request()->routeIs('admin.categories.*'),
-            // ],
+            [
+                'name' => 'Mis postulaciones',
+                'icon' => 'folder-open',
+                'url' => route('applications.index'),
+                'current' => request()->routeIs('applications.index'),
+            ],
+            [
+                'name' => 'Mis ofertas',
+                'icon' => 'folder-open',
+                'url' => route('applications.myoffers'),
+                'current' => request()->routeIs('applications.index'),
+            ],
         ],
     ];
 @endphp
