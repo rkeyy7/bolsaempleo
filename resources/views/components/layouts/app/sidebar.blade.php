@@ -4,21 +4,21 @@
             [
                 'name' => 'Offers',
                 'icon' => 'home',
-                'url' => route('dashboard'),
-                'current' => request()->routeIs('dashboard'),
+                'url' => route('offers.index'),
+                'current' => request()->routeIs('offers.index'),
             ],
             [
                 'name' => 'crear oferta',
                 'icon' => 'folder-open',
-                'url' => route('create'),
+                'url' => route('offers.create'),
                 'current' => request()->routeIs('create'),
             ],
-            [
-                'name' => 'Categorias',
-                'icon' => 'folder-open',
-                'url' => route('admin.categories.index'),
-                'current' => request()->routeIs('admin.categories.*'),
-            ],
+            // [
+            //     'name' => 'Categorias',
+            //     'icon' => 'folder-open',
+            //     'url' => route('admin.categories.index'),
+            //     'current' => request()->routeIs('admin.categories.*'),
+            // ],
         ],
     ];
 @endphp
@@ -34,7 +34,7 @@
     <flux:sidebar sticky stashable class="border-r border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
         <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
-        <a href="{{ route('dashboard') }}" class="mr-5 flex items-center space-x-2" wire:navigate>
+        <a href="{{ route('offers.index') }}" class="mr-5 flex items-center space-x-2" wire:navigate>
             <x-app-logo />
         </a>
 
@@ -69,7 +69,7 @@
         <!-- Desktop User Menu -->
         <flux:dropdown position="bottom" align="start">
             <flux:profile :name="auth()->user()->name" :initials="auth()->user()->initials()" icon-trailing="chevrons-up-down" />
-                <icon-trailing="chevrons-up-down" />
+                
 
             <flux:menu class="w-[220px]">
                 <flux:menu.radio.group>

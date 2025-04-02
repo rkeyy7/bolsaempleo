@@ -3,14 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use App\Models\Offer;
 use Illuminate\Support\Facades\Auth;
 
 class OfferController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    //     $this->middleware('role:admin')->only(['create', 'store', 'edit', 'update', 'destroy']);
+    //     $this->middleware('permission:manage offers')->only(['create', 'store', 'edit', 'update', 'destroy']);
+    // }
+
     public function index()
     {
         $offers = Offer::with('user')->latest()->paginate(5);
@@ -18,17 +23,13 @@ class OfferController extends Controller
         return view('dashboard',['offers' => $offers]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
         return view('offers.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         {
@@ -51,35 +52,31 @@ class OfferController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Offer $offer)
     {
         return view('offers.show', ['offer' => $offer]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Offer $offer)
     {
-        //
+        return view('offers.edit', compact('offer'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Offer $offer)
     {
-        //
+        $request->validate([
+            'title' => ['required'],
+            'salary' => ['required']
+        ]);
+    
+        $offer->update($request->all());
+    
+        return redirect()->route('offers.show', ['offer' => $offer])->with('status', 'Oferta actualizada correctamente.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Offer $offer)
     {
-        //
+        $offer->delete();
+        return redirect()->route('offers.index')->with('status', 'Oferta eliminada correctamente.');
     }
 }

@@ -1,60 +1,30 @@
 <x-layouts.app :title="__('Dashboard')">
-    <form method="POST" action="/offers">
+  <div class="container">
+    <h1>Crear Oferta</h1>
+    
+    <form action="{{ route('offers.store') }}" method="POST">
         @csrf
-        <div class="space-y-12">
-          <div class="border-b border-gray-900/10 pb-12">
-            <h2 class="text-base/7 font-semibold text-gray-900">create a job</h2>
-            <p class="mt-1 text-sm/6 text-gray-600">you only need two pieces of information</p>
-      
-            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-              <div class="sm:col-span-4">
-                <label for="username" class="block text-sm/6 font-medium text-gray-900">Nombre de la empresa</label>
-                <div class="mt-2">
-                  <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
-                    <input type="text" name="enterprise_name" id="enterprise_name" class="block min-w-0 grow py-1.5 pr-3 pl-1 px-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="empresa sas">
-                  </div>
-                </div>
-              </div>
-              <div class="sm:col-span-4">
-                <label for="username" class="block text-sm/6 font-medium text-gray-900">Title</label>
-                <div class="mt-2">
-                  <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
-                    <input type="text" name="title" id="title" class="block min-w-0 grow py-1.5 pr-3 pl-1 px-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="Title">
-                  </div>
-                </div>
-              </div>
-              <div class="sm:col-span-4">
-                <label for="username" class="block text-sm/6 font-medium text-gray-900">Description</label>
-                <div class="mt-2">
-                  <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
-                    <input type="text" name="description" id="description" class="block min-w-0 grow py-1.5 pr-3 pl-1 px-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="Description">
-                  </div>
-                </div>
-              </div>
-              <div class="sm:col-span-4">
-                <label for="username" class="block text-sm/6 font-medium text-gray-900">Salary</label>
-                <div class="mt-2">
-                  <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
-                    <input type="text" name="salary" id="salary" class="block min-w-0 grow py-1.5 pr-3 pl-1 px-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="Salary">
-                  </div>
-                </div>
-              </div>
-              <div class="sm:col-span-4">
-                <label for="username" class="block text-sm/6 font-medium text-gray-900">Location</label>
-                <div class="mt-2">
-                  <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
-                    <input type="text" name="location" id="location" class="block min-w-0 grow py-1.5 pr-3 pl-1 px-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="Location">
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-          </div>
+        <div class="mb-3">
+            <label for="enterprise_name" class="form-label">Nombre de la Empresa</label>
+            <input type="text" class="form-control" name="enterprise_name" required>
         </div>
-      
-        <div class="mt-6 flex items-center justify-end gap-x-6">
-          <button type="button" class="text-sm/6 font-semibold text-gray-900">Cancel</button>
-          <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+        <div class="mb-3">
+            <label for="title" class="form-label">Título</label>
+            <input type="text" class="form-control" name="title" required>
         </div>
-      </form>
+        <div class="mb-3">
+            <label for="description" class="form-label">Descripción</label>
+            <textarea class="form-control" name="description" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="salary" class="form-label">Salario</label>
+            <input type="text" class="form-control" name="salary" required>
+        </div>
+        <div class="mb-3">
+            <label for="location" class="form-label">Ubicación</label>
+            <input type="text" class="form-control" name="location" required>
+        </div>
+        <button type="submit" class="btn btn-success">Crear</button>
+    </form>
+  </div>
 </x-layouts.app>
