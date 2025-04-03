@@ -25,17 +25,17 @@ class ApplicationController extends Controller
         
         return view('applications.index', compact('applications'));
     }
-    public function showmyoffers($id)
+    public function showmyoffers()
     {
         $user = Auth::user();
-        $offers = Offer::where('user_id', $user->id)->get()->paginate(3);
-        return view('applications.myoffers', compact('offersapplications'));
+        $myoffers = Offer::where('user_id', $user->id)->paginate(3);
+        return view('applications.myoffers', compact('myoffers'));
     }
 
     public function offersApplications($id)
     {
-        $applications = Application::where('offer_id', $id)->get()->paginate(3);
-        return view('applications.job_applications', compact('applications'));
+        $applications = Application::where('offer_id', $id)->paginate(3);
+        return view('applications.offerapplications', compact('applications'));
     }
 
 

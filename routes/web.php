@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/applications/myoffers', [ApplicationController::class, 'showmyoffers'])->name('applications.myoffers');
 
-    Route::get('/applications/{id}', [ApplicationController::class, 'showApplications'])->name('applications.show');
+    Route::get('/offers/{id}/applications', [ApplicationController::class, 'offersApplications'])->name('applications.offerapplications');
 
     Route::get('/files/download/{id}', [FileController::class, 'downloadFile'])->name('files.download');
     
