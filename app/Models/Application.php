@@ -12,6 +12,9 @@ class Application extends Model
 
     protected $fillable = [
         'status',
+        'offer_id',
+        'user_id',
+        'file_id',
     ];
 
     public function offer()
@@ -22,5 +25,9 @@ class Application extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function file()
+    {
+        return $this->belongsTo(File::class);
     }
 }
