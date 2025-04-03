@@ -20,18 +20,20 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-
         // Crear roles
         $adminRole = Role::create(['name' => 'admin']);
         $userRole = Role::create(['name' => 'user']);
+        $employerRole = Role::create(['name' => 'employer']); // Nuevo rol
 
         // Crear permisos
         Permission::create(['name' => 'manage offers']);
         Permission::create(['name' => 'apply for jobs']);
+        Permission::create(['name' => 'view applications']); // Permiso para empleadores
 
         // Asignar permisos a roles
         $adminRole->givePermissionTo('manage offers');
         $userRole->givePermissionTo('apply for jobs');
+        $employerRole->givePermissionTo('view applications'); // Asignar permiso al rol employer
 
         // Crear usuarios de prueba manualmente
         $admin = User::create([
@@ -55,9 +57,20 @@ class UserSeeder extends Seeder
 
         $user->assignRole('user');
 
+        // Crear un usuario manualmente con el rol de employer
+        $employer = User::create([
+            'name' => 'Employer User',
+            'email' => 'employer@example.com',
+            'password' => Hash::make('password'),
+        ]);
+        $employer->assignRole('employer'); // Asignar el rol de employer
+
         // Crear usuarios con la fábrica y asignarles el rol de usuario
         User::factory(5)->create()->each(function ($user) use ($userRole) {
             $user->assignRole('user');
+        });
+        User::factory(5)->create()->each(function ($user) use ($userRole) {
+            $user->assignRole('employer');
         });
 
         // Crear ofertas de empleo con la fábrica

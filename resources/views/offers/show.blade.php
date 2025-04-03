@@ -33,7 +33,7 @@
                 @method('POST')
                 <button type="submit">Postularse</button>
             </form>
-@endif
+        @endif
         
     </div>
 </x-layouts.app>

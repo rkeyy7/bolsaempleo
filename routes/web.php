@@ -14,14 +14,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('offers', OfferController::class);
 });
 
-// Route::get('/offers', [OfferController::class, 'index'])->name('offers.create');
-
-// Route::get('/offers/create', [OfferController::class, 'create'])->name('offers.create');
-
-// Route::post('/offers', [OfferController::class, 'store'])->name('store')->middleware('auth');
-
-// Route::get('/offers/{offer}', [OfferController::class, 'show'])->name('show');
-
 Route::middleware('auth')->group(function () {
 
     Route::post('/files/upload', [FileController::class, 'uploadfile'])->name('files.upload');
@@ -35,7 +27,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/offers/{id}/applications', [ApplicationController::class, 'offersApplications'])->name('applications.offerapplications');
 
     Route::get('/files/download/{id}', [FileController::class, 'downloadFile'])->name('files.download');
+
+    Route::patch('/applications/{application}/status', [ApplicationController::class, 'updateStatus'])->name('applications.updatestatus');
     
+    Route::get('/files/{id}/download', [FileController::class, 'downloadFile'])->name('files.download');
     });
     
 Route::middleware(['auth'])->group(function () {
@@ -46,7 +41,4 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
 });
 
-
-
-     
 require __DIR__.'/auth.php';
