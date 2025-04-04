@@ -13,7 +13,10 @@
 
             <flux:navbar class="-mb-px max-lg:hidden">
                 <flux:navbar.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                    {{ __('Dashboard') }}
+                    {{ __('Ofertas') }}
+                </flux:navbar.item>
+                <flux:navbar.item icon="layout-grid" :href="route('create')" :current="request()->routeIs('create')" wire:navigate>
+                    {{ __('crear ofertas') }}
                 </flux:navbar.item>
             </flux:navbar>
 
@@ -99,7 +102,7 @@
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')">
                     <flux:navlist.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                    {{ __('Dashboard') }}
+                    {{ __('dashboard') }}
                     </flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
