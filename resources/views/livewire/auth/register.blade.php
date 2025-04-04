@@ -44,7 +44,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 }; ?>
 
 <div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Create an account')" :description="__('Enter your details below to create your account')" />
+    <x-auth-header :title="__('Crea una cuenta')" :description="__('introduce tus datos para crear tu cuenta')" />
 
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')" />
@@ -53,42 +53,42 @@ new #[Layout('components.layouts.auth')] class extends Component {
         <!-- Name -->
         <flux:input
             wire:model="name"
-            :label="__('Name')"
+            :label="__('Nombre')"
             type="text"
             required
             autofocus
             autocomplete="name"
-            :placeholder="__('Full name')"
+            :placeholder="__('Nombre')"
         />
 
         <!-- Email Address -->
         <flux:input
             wire:model="email"
-            :label="__('Email address')"
+            :label="__('Correo Electronico')"
             type="email"
             required
             autocomplete="email"
-            placeholder="email@example.com"
+            placeholder="correo@ejemplo.com"
         />
 
         <!-- Password -->
         <flux:input
             wire:model="password"
-            :label="__('Password')"
+            :label="__('Contraseña')"
             type="password"
             required
             autocomplete="new-password"
-            :placeholder="__('Password')"
+            :placeholder="__('Contraseña')"
         />
 
         <!-- Confirm Password -->
         <flux:input
             wire:model="password_confirmation"
-            :label="__('Confirm password')"
+            :label="__('Confirmar Contraseña')"
             type="password"
             required
             autocomplete="new-password"
-            :placeholder="__('Confirm password')"
+            :placeholder="__('Confirmar Contraseña')"
         />
         <!-- Role -->
         {{-- <flux:radio 
@@ -100,7 +100,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
         <div class="flex flex-col gap-2">
             <label for="role" class="text-sm font-medium text-zinc-700 dark:text-zinc-300">{{ __('Role') }}</label>
             <select id="role" wire:model="role" required class="form-select block w-full rounded-md border-zinc-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-zinc-800 dark:border-zinc-600 dark:text-zinc-200">
-                <option value="">{{ __('Select a role') }}</option>
+                <option value="">{{ __('Escoge tu') }}</option>
                 <option value="employer">{{ __('Employer') }}</option>
                 <option value="user">{{ __('User') }}</option>
             </select>
@@ -109,13 +109,13 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
         <div class="flex items-center justify-end"> 
             <flux:button type="submit" variant="primary" class="w-full">
-                {{ __('Create account') }}
+                {{ __('Crear Cuenta') }}
             </flux:button>
         </div>
     </form>
 
     <div class="space-x-1 text-center text-sm text-zinc-600 dark:text-zinc-400">
-        {{ __('Already have an account?') }}
-        <flux:link :href="route('login')" wire:navigate>{{ __('Log in') }}</flux:link>
+        {{ __('Ya tienes una cuenta?') }}
+        <flux:link :href="route('login')" wire:navigate>{{ __('Inicia Sesion') }}</flux:link>
     </div>
 </div>
