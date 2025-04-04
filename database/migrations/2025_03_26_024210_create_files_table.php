@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->string('file_path');
-            $table->string('file_type');
+            $table->foreignId('user_id')->unique()->constrained()->cascadeOnDelete();
+            $table->text('file_path')->unique();
+            $table->string('file_type', 50);
+            $table->index('file_type');
             $table->timestamps();
+            
         });
     }
 
