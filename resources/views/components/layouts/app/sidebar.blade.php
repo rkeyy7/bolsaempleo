@@ -1,32 +1,42 @@
 @php
     $groups = [
-        'platform' => [
-            [
-                'name' => 'Offers',
-                'icon' => 'home',
-                'url' => route('offers.index'),
-                'current' => request()->routeIs('offers.index'),
-            ],
-            [
-                'name' => 'Crear oferta',
-                'icon' => 'folder-open',
-                'url' => route('offers.create'),
-                'current' => request()->routeIs('create'),
-            ],
-            [
-                'name' => 'Mis postulaciones',
-                'icon' => 'folder-open',
-                'url' => route('applications.index'),
-                'current' => request()->routeIs('applications.index'),
-            ],
-            [
-                'name' => 'Mis ofertas',
-                'icon' => 'folder-open',
-                'url' => route('applications.myoffers'),
-                'current' => request()->routeIs('applications.index'),
-            ],
-        ],
+        'platform' => [],
     ];
+
+    // Agregar el botón "Offers" solo si el usuario tiene el permiso
+    if (auth()->user()->can('apply for jobs')) {
+        $groups['platform'][] = [
+            'name' => 'Offers',
+            'icon' => 'home',
+            'url' => route('offers.index'),
+            'current' => request()->routeIs('offers.index'),
+        ];
+    }
+
+    if (auth()->user()->can('manage myoffers')) {
+        $groups['platform'][] = [
+            'name' => 'Crear oferta',
+            'icon' => 'folder-open',
+            'url' => route('offers.create'),
+            'current' => request()->routeIs('create'),
+        ];
+    }
+    if (auth()->user()->can('apply for jobs')) {
+        $groups['platform'][] = [
+            'name' => 'Mis postulaciones',
+            'icon' => 'folder-open',
+            'url' => route('applications.index'),
+            'current' => request()->routeIs('applications.index'),
+        ];
+    }
+    if (auth()->user()->can('manage myoffers')) {
+    $groups['platform'][] = [
+        'name' => 'Mis ofertas',
+        'icon' => 'folder-open',
+        'url' => route('applications.myoffers'),
+        'current' => request()->routeIs('applications.index'),
+        ];
+    }
 @endphp
 
 <!DOCTYPE html>

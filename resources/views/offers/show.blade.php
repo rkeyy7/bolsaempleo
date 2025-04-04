@@ -9,23 +9,7 @@
             <p class="text-gray-700 text-sm"><strong class="font-medium">Descripción:</strong> {{ $offer->description }}</p>
 
             <div class="mt-6 flex flex-wrap gap-3">
-                <a href="{{ route('offers.index') }}" 
-                   class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm hover:bg-gray-300 transition">Volver</a>
-                
-                <a href="{{ route('offers.edit', $offer) }}" 
-                   class="px-4 py-2 bg-blue-300 text-blue-600 rounded-lg text-sm hover:bg-blue-100 transition">Editar</a>
-                
-                <form action="{{ route('offers.destroy', $offer) }}" method="POST" class="inline">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" 
-                            class="px-4 py-2 bg-red-500 text-white rounded-lg text-sm hover:bg-red-600 transition">
-                        Eliminar
-                    </button>
-                </form>
-            </div>
-
-            @if(auth()->user()->hasRole('user'))
+                @if(auth()->user()->hasRole('user'))
                 <div class="mt-6">
                     <form action="{{ route('files.upload') }}" method="POST" enctype="multipart/form-data" class="space-y-3">
                         @csrf
@@ -37,7 +21,7 @@
                         </button>
                     </form>
                 </div>
-            @endif
+                @endif
 
             @if(auth()->user()->file)
                 <form action="{{ route('applications.apply', $offer->id) }}" method="POST" class="mt-4">
