@@ -15,8 +15,8 @@
                     </div>
 
                     <div class="mt-2">
-                        {{-- Form to change the status of the application --}}
-                        {{-- <form action="{{ route('applications.updateStatus', $application->id) }}" method="POST" class="inline-block">
+                        Form to change the status of the application
+                        <form action="{{ route('applications.updatestatus', $application->id) }}" method="POST" class="inline-block">
                             @csrf
                             @method('PATCH')
                             <select name="status" class="border border-gray-300 rounded px-2 py-1">
@@ -27,8 +27,8 @@
                             <button type="submit" class="ml-2 px-4 py-2 bg-blue-500 text-white rounded">Actualizar</button>
                         </form>
 
-                        {{-- Link to download the associated document --}}
-                        {{-- <a href="{{ route('applications.download', $application->file_id) }}" class="ml-4 px-4 py-2 bg-green-500 text-white rounded">Descargar Documento</a> --}}
+                        Link to download the associated document
+                        <a href="{{ route('files.download', $application->file_id) }}" class="ml-4 px-4 py-2 bg-green-500 text-white rounded">Descargar Documento</a>
                     </div>
                 </div>
                 @endforeach

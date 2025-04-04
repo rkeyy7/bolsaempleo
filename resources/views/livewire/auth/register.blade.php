@@ -37,7 +37,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
         Auth::login($user);
 
-        $this->redirectIntended(route('dashboard', absolute: false), navigate: true);
+        $this->redirectIntended(route('offers.index', absolute: false), navigate: true);
         
     }
     
@@ -101,7 +101,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
             <label for="role" class="text-sm font-medium text-zinc-700 dark:text-zinc-300">{{ __('Role') }}</label>
             <select id="role" wire:model="role" required class="form-select block w-full rounded-md border-zinc-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-zinc-800 dark:border-zinc-600 dark:text-zinc-200">
                 <option value="">{{ __('Select a role') }}</option>
-                <option value="admin">{{ __('Admin') }}</option>
+                <option value="employer">{{ __('Employer') }}</option>
                 <option value="user">{{ __('User') }}</option>
             </select>
             @error('role') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror

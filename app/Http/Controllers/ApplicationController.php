@@ -38,16 +38,26 @@ class ApplicationController extends Controller
         return view('applications.offerapplications', compact('applications'));
     }
 
-
     public function apply(Request $request, $id)
     {
         // Obtener el trabajo al que se postula
         
-
         $user = Auth::user();
         $offer = Offer::findOrFail($id);
         $file = $user->file;
-        
+
+        $existingApplication = Application::where('user_id', $user->id)
+        ->where('offer_id', $offer->id)
+        ->first();
+
+        if ($existingApplication) {
+            return redirect()->back()->with('error', 'Ya te has postulado a esta oferta.');
+        }
+    
+        // Verificar si el usuario tiene un archivo (hoja de vida) subido
+        if (!$user->file) {
+            return redirect()->back()->with('error', 'Debes subir tu hoja de vida antes de postularte.');
+        }
 
         if (!$user->file) {
             return redirect()->back()->with('error', 'Debes subir tu hoja de vida antes de postularte.');
@@ -62,9 +72,17 @@ class ApplicationController extends Controller
         return redirect()->route('offers.index')->with('status', 'Postulación enviada.');
         // return back()->with('status', 'Postulación enviada.');
         }
+        
     }
 
-    // Mostrar todas las postulaciones de un trabajo
+    public function updateStatus(Request $request, Application $application)
+    {
+        $request->validate(['status' => 'required|in:accepted,rejected,pending']);
+    
+        $application->update(['status' => $request->status]);
+    
+        return redirect()->back()->with('status', 'Estado actualizado correctamente.');
+    }
     
 
 }
