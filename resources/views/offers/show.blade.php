@@ -1,4 +1,4 @@
-<x-layouts.app :title="__('Dashboard')">
+<x-layouts.app :title="__('MundoTrabajo')">
     <div class="space-y-6 p-6 max-w-4xl mx-auto">
         <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-md space-y-4">
             <h1 class="text-3xl font-bold text-blue-700 flex items-center gap-2">

@@ -1,4 +1,4 @@
-<x-layouts.app :title="__('Dashboard')">
+<x-layouts.app :title="__('MundoTrabajo')">
     <div class="space-y-6 p-4">
         @foreach ($offers as $offer)
             <a href="/offers/{{ $offer['id'] }}" 

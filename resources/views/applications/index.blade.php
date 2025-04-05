@@ -1,4 +1,4 @@
-<x-layouts.app :title="__('Dashboard')">
+<x-layouts.app :title="__('MundoTrabajo')">
     <div class="max-w-6xl mx-auto py-10 px-6 space-y-4">
         <h1 class="text-3xl font-bold text-gray-800 mb-6">Mis Postulaciones</h1>
 

@@ -1,4 +1,4 @@
-<x-layouts.app :title="__('Dashboard')">
+<x-layouts.app :title="__('MundoTrabajo')">
     <div class="max-w-4xl mx-auto py-10 px-6 bg-white shadow-lg rounded-2xl">
         <h1 class="text-3xl font-bold text-gray-800 mb-6">Editar Oferta</h1>
         

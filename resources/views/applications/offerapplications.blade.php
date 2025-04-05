@@ -1,4 +1,4 @@
-<x-layouts.app :title="__('Applications for Offer')">
+<x-layouts.app :title="__('MundoTrabajo')">
     <div class="max-w-6xl mx-auto py-10 px-6">
         <h1 class="text-3xl font-bold text-gray-800 mb-8">Control de Postulaciones</h1>
 
