@@ -12,7 +12,6 @@ class ApplicationController extends Controller
 {
     public function index()
     {
-        // Obtener todas las postulaciones del usuario autenticado
         $user = Auth::user();
         $applications = Application::where('user_id', $user->id)->paginate(3);
 
@@ -34,12 +33,10 @@ class ApplicationController extends Controller
 
     public function apply(Request $request, $id)
     {
-        // Obtener el trabajo al que se postula
         $user = Auth::user();
         $offer = Offer::findOrFail($id);
         $file = $user->file;
 
-        // Verificar si ya existe una postulación para esta oferta
         $existingApplication = Application::where('user_id', $user->id)
             ->where('offer_id', $offer->id)
             ->first();
@@ -48,12 +45,11 @@ class ApplicationController extends Controller
             return redirect()->back()->with('error', 'Ya te has postulado a esta oferta.');
         }
 
-        // Verificar si el usuario tiene un archivo (hoja de vida) subido
         if (!$user->file) {
+            dd('No file uploaded'); 
             return redirect()->back()->with('error', 'Debes subir tu hoja de vida antes de postularte.');
         }
 
-        // Crear la postulación
         Application::create([
             'user_id' => $user->id,
             'offer_id' => $offer->id,
