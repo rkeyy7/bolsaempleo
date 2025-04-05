@@ -18,7 +18,7 @@ class OfferController extends Controller
 
     public function index()
     {
-        $offers = Offer::with('user')->latest()->paginate(5);
+        $offers = Offer::with('user')->latest()->paginate(3);
         
         return view('dashboard',['offers' => $offers]);
     }
@@ -76,8 +76,9 @@ class OfferController extends Controller
     }
 
     public function destroy(Offer $offer)
-    {
-        $offer->delete();
-        return redirect()->route('offers.index')->with('status', 'Oferta eliminada correctamente.');
-    }
+{
+    $offer->delete();
+
+    return back()->with('status', 'Oferta eliminada correctamente.');
+}
 }

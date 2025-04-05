@@ -8,7 +8,7 @@
 </head>
 <body class="flex h-screen bg-gray-100">
     <!-- Sidebar -->
-    <aside class="w-1/3 bg-gray-900 text-white flex flex-col justify-between p-10 hidden lg:flex">
+    <aside class="w-1/3  bg-neutral-900 text-white flex flex-col justify-between p-10 lg:flex">
         <div>
             <h1 class="text-3xl font-bold">Laravel</h1>
         </div>
@@ -21,7 +21,7 @@
     <!-- Main Content -->
     <main class="w-full lg:w-2/3 flex flex-col justify-center items-center px-6 lg:px-16 bg-white shadow-md">
         <div class="max-w-3xl text-center space-y-8">
-            <h1 class="text-5xl font-extrabold text-gray-900">Bienvenido a la Plataforma de Ofertas</h1>
+            <h1 class="text-5xl font-extrabold text-gray-900">Bienvenido a la Plataforma de Ofertas Laborales</h1>
             <p class="text-gray-600 text-lg">Explora oportunidades laborales o publica ofertas de empleo de manera fácil y rápida.</p>
             
             <div class="mt-8 flex flex-col items-center space-y-5">

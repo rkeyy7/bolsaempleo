@@ -23,7 +23,7 @@
             
             <div>
                 <label for="salary" class="block text-sm font-medium text-gray-700">Salario</label>
-                <input type="text" name="salary" id="salary" class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none" placeholder="Salario en USD">
+                <input type="number" name="salary" id="salary" class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none" placeholder="Salario en USD">
             </div>
             
             <div>

@@ -3,10 +3,9 @@
         'platform' => [],
     ];
 
-    // Agregar el botón "Offers" solo si el usuario tiene el permiso
     if (auth()->user()->can('apply for jobs')) {
         $groups['platform'][] = [
-            'name' => 'Offers',
+            'name' => 'Ofertas Laborales',
             'icon' => 'home',
             'url' => route('offers.index'),
             'current' => request()->routeIs('offers.index'),
@@ -31,7 +30,7 @@
     }
     if (auth()->user()->can('manage myoffers')) {
     $groups['platform'][] = [
-        'name' => 'Mis ofertas',
+        'name' => 'Empleos Publicados',
         'icon' => 'folder-open',
         'url' => route('applications.myoffers'),
         'current' => request()->routeIs('applications.index'),
